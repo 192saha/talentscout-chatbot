@@ -25,8 +25,9 @@ for sender, msg in st.session_state.chat_history:
 import openai
 from prompts import get_initial_prompt, get_question_prompt, get_fallback_prompt
 from utils import extract_tech_stack, contains_exit_keywords
+import streamlit as st
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-openai.api_key = "YOUR_OPENAI_API_KEY"  # Replace this or use secrets
 
 class HiringAssistant:
     def __init__(self):
