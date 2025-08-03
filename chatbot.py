@@ -1,9 +1,9 @@
-import openai
+from openai import OpenAI
 from prompts import get_initial_prompt, get_question_prompt, get_fallback_prompt
 from utils import extract_tech_stack, contains_exit_keywords
 import streamlit as st
-openai.api_key = st.secrets["OPENAI_API_KEY"]
 
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 class HiringAssistant:
     def __init__(self):
@@ -42,8 +42,8 @@ class HiringAssistant:
     def ask_technical_questions(self):
         tech_list = extract_tech_stack(self.collected_data["tech_stack"])
         prompt = get_question_prompt(tech_list)
-        completion = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}]
         )
-        return completion.choices[0].message.content
+        return response.choices[0].message.content
