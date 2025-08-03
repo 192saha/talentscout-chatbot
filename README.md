@@ -16,3 +16,14 @@ cd talentscout-chatbot
 pip install -r requirements.txt
 streamlit run app.py
 ```
+
+## Deployment (Streamlit Cloud)
+1. Push this project to a public GitHub repo
+2. Go to https://streamlit.io/cloud and click **"New app"**
+3. Connect your GitHub and select this repo
+4. Set `app.py` as the main file
+5. In *Secrets*, add:
+```
+OPENAI_API_KEY="your-openai-key"
+```
+6. Deploy 🚀
